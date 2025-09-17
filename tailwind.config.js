@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,jsx,mdx}",       // include MDX pages
-    "./components/**/*.{js,jsx,mdx}",  // include components
+    "./pages/**/*.{js,jsx,mdx}",
+    "./components/**/*.{js,jsx,mdx}",
+    "./posts/**/*.{mdx}", // Include the posts directory
   ],
   theme: {
     extend: {
