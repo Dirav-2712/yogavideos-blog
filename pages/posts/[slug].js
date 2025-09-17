@@ -9,10 +9,7 @@ export async function getStaticPaths() {
   const postsDirectory = path.join(process.cwd(), 'posts')
   const filenames = fs.existsSync(postsDirectory) ? fs.readdirSync(postsDirectory) : []
 
-  const paths = filenames.map((name) => ({
-    params: { slug: name.replace(/\.mdx$/, '') }
-  }))
-
+  const paths = filenames.map(name => ({ params: { slug: name.replace(/\.mdx$/, '') } }))
   return { paths, fallback: false }
 }
 
@@ -28,7 +25,7 @@ export async function getStaticProps({ params }) {
 export default function PostPage({ mdxSource, slug }) {
   return (
     <Layout>
-      <h1 className="text-2xl font-bold mb-6">{slug.replace(/-/g, ' ')}</h1>
+      <h1 className="text-3xl font-bold text-primary mb-6">{slug.replace(/-/g, ' ')}</h1>
       <MDXRemote {...mdxSource} />
     </Layout>
   )
