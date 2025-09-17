@@ -1,14 +1,17 @@
 import fs from 'fs'
 import path from 'path'
-import Link from 'next/link'
+import Layout from '../components/Layout'
+import Hero from '../components/Hero'
+import PostCard from '../components/PostCard'
 
 export async function getStaticProps() {
   const postsDirectory = path.join(process.cwd(), 'posts')
   const filenames = fs.existsSync(postsDirectory) ? fs.readdirSync(postsDirectory) : []
 
-  const posts = filenames.map((name) => ({
+  const posts = filenames.map(name => ({
     slug: name.replace(/\.mdx$/, ''),
-    title: name.replace(/\.mdx$/, '').replace(/-/g, ' ')
+    title: name.replace(/-/g, ' '),
+    image: 'https://source.unsplash.com/400x300/?yoga' // placeholder image
   }))
 
   return { props: { posts } }
@@ -16,17 +19,13 @@ export async function getStaticProps() {
 
 export default function Home({ posts }) {
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Latest Posts</h2>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.slug}>
-            <Link href={`/posts/${post.slug}`}>
-              <span className="text-purple-600 underline">{post.title}</span>
-            </Link>
-          </li>
+    <Layout>
+      <Hero />
+      <section id="posts" className="grid md:grid-cols-2 gap-6">
+        {posts.map(post => (
+          <PostCard key={post.slug} {...post} />
         ))}
-      </ul>
-    </div>
+      </section>
+    </Layout>
   )
 }
