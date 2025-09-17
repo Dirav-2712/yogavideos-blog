@@ -1,3 +1,4 @@
+// pages/posts/[slug].js
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -9,13 +10,16 @@ export async function getStaticPaths() {
   const postsDirectory = path.join(process.cwd(), 'posts')
   const filenames = fs.existsSync(postsDirectory) ? fs.readdirSync(postsDirectory) : []
 
-  const paths = filenames.map(name => ({ params: { slug: name.replace(/\.mdx$/, '') } }))
+  const paths = filenames.map(name => ({
+    params: { slug: name.replace(/\.mdx$/, '') }
+  }))
+
   return { paths, fallback: false }
 }
 
 export async function getStaticProps({ params }) {
   const filePath = path.join(process.cwd(), 'posts', `${params.slug}.mdx`)
-  const source = fs.readFileSync(filePath)
+  const source = fs.readFileSync(filePath, 'utf8')
   const { content } = matter(source)
   const mdxSource = await serialize(content)
 
