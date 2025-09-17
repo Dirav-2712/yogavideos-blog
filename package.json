@@ -7,13 +7,13 @@
     "build": "next build",
     "start": "next start"
   },
-  "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "@next/mdx": "latest",
-    "tailwindcss": "latest",
-    "gray-matter": "latest",
-    "next-mdx-remote": "latest"
-  }
+ "dependencies": {
+  "next": "latest",
+  "react": "latest",
+  "react-dom": "latest",
+  "@next/mdx": "latest",
+  "next-mdx-remote": "latest",
+  "gray-matter": "latest",
+  "tailwindcss": "latest"
+}
 }
