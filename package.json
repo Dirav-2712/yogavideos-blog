@@ -11,7 +11,6 @@
   "next": "latest",
   "react": "latest",
   "react-dom": "latest",
-  "@next/mdx": "latest",
   "next-mdx-remote": "latest",
   "gray-matter": "latest",
   "tailwindcss": "latest"
